@@ -1,21 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import {
+  Text,
+  View,
+  Button
+} from 'react-native';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+
+const style = {
+  borderWidth: 50,
+  borderColor: '#AAAAAA'
 }
 
-export default App;
+const ClickedButton = (props) => {
+  return (
+    <Button
+      title={props.clicked ? `${props.title} clicked!` : props.title} onPress={props.onPress}
+    />
+  )
+}
+
+const App = (props) => {
+  return (
+  <View style={style}>
+    <ClickedButton title="Add One" onPress={props.addOne} clicked={'Add One' === props.lastClicked}/>
+    <ClickedButton title="Substract One" onPress={props.substractOne} clicked={'Substract One' === props.lastClicked}/>
+    <ClickedButton title="Reset" onPress={props.reset} clicked={'Reset' === props.lastClicked}/>
+
+    <Text>{props.count}</Text>
+  </View>
+ )
+}
+
+export default App
